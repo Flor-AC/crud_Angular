@@ -12,3 +12,7 @@ nav div{
   left: 50%;
   padding: 5px;
 }
+
+div{
+  margin-top: auto;
+}
