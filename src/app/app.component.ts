@@ -11,11 +11,16 @@ export class AppComponent {
 
   constructor(private router: Router){}
 
-  Nuevo() {
-  this.router.navigate(['add']);
-  }
-
-  Listar() {
+  Empleado() {
     this.router.navigate(['listar']);
   }
+
+  Departamento() {
+    this.router.navigate(['listar-d']);
+  }
+
+  /*<div class = "container" style="text-align: center; margin-top: 50px">
+    <button (click)="Listar()" class="btn btn-info">Listar</button>
+    <button (click)="Nuevo()" class="btn btn-info" style="margin-left: 10px">Nuevo</button>
+  </div>*/
 }
