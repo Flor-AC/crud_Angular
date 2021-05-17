@@ -12,14 +12,15 @@
           <th>ID</th>
           <th>Nombre</th>
           <th>Apellidos</th>
+          <th>Télefono</th>
           <th>Acciones</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let employee of empleados">
         <tr class="text-center">
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{empleado.idEmployee.toString()}}</td>
+          <td>{{empleado.nameEmployee.toString()}}</td>
+          <td>{{empleado.phoneEmployee.toString()}}</td>
           <td>
             <button class="btn btn-warning">Editar</button>
             <button class="btn btn-danger" style="margin-left: 10px">Delete</button>
@@ -41,14 +42,14 @@
             <fieldset>
               <div class="form-group">
                 <label for="nombre" class="form-label mt-4">Nombre</label>
-                <input type="nombre" class="form-control" id="nombre" aria-describedby="nombre">
+                <input type="nombre" [(ngModel)]="nuevoEmpleado.nameEmployee" name="nameEmployee" class="form-control" id="nombre" aria-describedby="nombre">
               </div>
               <div class="form-group">
                 <label for="apellido" class="form-label mt-4">Apellidos</label>
                 <input type="apellido" class="form-control" id="apellido" aria-describedby="apellido">
               </div>
               <div>
-                <button type="button" class="btn btn-success" style="text-align: center">Agregar Empleado</button>
+                <button type="button" (click)="guardar()" class="btn btn-success" style="text-align: center">Agregar Empleado</button>
               </div>
             </fieldset>
           </form>

@@ -38,4 +38,15 @@ export class ListarDComponent implements OnInit {
       }
     });
   }
+
+  editar() {
+    this.service.update(this.nuevoDepartamento).subscribe(res => {
+      this.nuevoDepartamento = res;
+      this.obtenerDepartamentos();
+    });
+  }
+
+  eliminar(id) { }
+
+
 }
