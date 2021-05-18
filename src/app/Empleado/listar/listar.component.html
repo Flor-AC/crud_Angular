@@ -16,11 +16,12 @@
           <th>Acciones</th>
         </tr>
         </thead>
-        <tbody *ngFor="let employee of empleados">
+        <tbody *ngFor="let empleado of empleados">
         <tr class="text-center">
-          <td>{{empleado.idEmployee.toString()}}</td>
-          <td>{{empleado.nameEmployee.toString()}}</td>
-          <td>{{empleado.phoneEmployee.toString()}}</td>
+          <td>{{empleado.idEmployee}}</td>
+          <td>{{empleado.nameEmployee}}</td>
+          <td>{{empleado.addressEmployee}}</td>
+          <td>{{empleado.phoneNumberEmployee}}</td>
           <td>
             <button class="btn btn-warning">Editar</button>
             <button class="btn btn-danger" style="margin-left: 10px">Delete</button>
@@ -46,7 +47,11 @@
               </div>
               <div class="form-group">
                 <label for="apellido" class="form-label mt-4">Apellidos</label>
-                <input type="apellido" class="form-control" id="apellido" aria-describedby="apellido">
+                <input type="apellido" [(ngModel)]="nuevoEmpleado.addressEmployee" name="addressEmployee" class="form-control" id="apellido" aria-describedby="apellido">
+              </div>
+              <div class="form-group">
+                <label for="telefono" class="form-label mt-4">Télefono</label>
+                <input type="telefono" [(ngModel)]="nuevoEmpleado.phoneNumberEmployee" name="phoneNumberEmployee" class="form-control" id="telefono" aria-describedby="telefono">
               </div>
               <div>
                 <button type="button" (click)="guardar()" class="btn btn-success" style="text-align: center">Agregar Empleado</button>

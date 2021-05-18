@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceService} from '../../Service/service.service';
+import {ServiceService} from '../../Service/service-e.service';
 
 class Empleado {
   idEmployee: string;
   nameEmployee: string;
-  phoneEmployee: string;
+  addressEmployee: string;
+  phoneNumberEmployee: string;
 }
 
 @Component({
@@ -27,7 +28,7 @@ export class ListarComponent implements OnInit {
   }
 
   obtenerEmplados() {
-    this.service.getAll().subscribe(res => {
+    this.service.getAllE().subscribe(res => {
       this.empleados = res;
     });
   }
