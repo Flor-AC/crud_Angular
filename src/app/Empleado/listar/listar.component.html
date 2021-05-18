@@ -24,7 +24,7 @@
           <td>{{empleado.phoneNumberEmployee}}</td>
           <td>
             <button class="btn btn-warning">Editar</button>
-            <button class="btn btn-danger" style="margin-left: 10px">Delete</button>
+            <button class="btn btn-danger" style="margin-left: 10px" (click)="eliminar(empleado.idEmployee)">Delete</button>
           </td>
         </tr>
         </tbody>

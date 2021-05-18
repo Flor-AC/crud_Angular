@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import {ServiceService} from '../../Service/service.service';
 
 class Departamento {
@@ -17,10 +18,12 @@ export class ListarDComponent implements OnInit {
   departamento: Departamento;
   nuevoDepartamento: Departamento;
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService) {
+  }
 
   ngOnInit(): void {
     this.obtenerDepartamentos();
+    this.departamento = new Departamento();
     this.nuevoDepartamento = new Departamento();
   }
 
@@ -39,14 +42,39 @@ export class ListarDComponent implements OnInit {
     });
   }
 
-  editar() {
+  editar(id) {
+    console.log(id);
     this.service.update(this.nuevoDepartamento).subscribe(res => {
       this.nuevoDepartamento = res;
       this.obtenerDepartamentos();
     });
   }
 
-  eliminar(id) { }
+  obtener(id) {
+    this.service.get(id).subscribe(res => {
+      this.nuevoDepartamento = res;
+    });
+  }
 
-
+  eliminar(idDepartment) {
+    Swal.fire({
+      title: '¿Seguro que desea eliminar la persona?',
+      text: '¡No podra deshacer esta acción!',
+      icon: 'warning',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Si, eliminarlo'
+    }).then((res) => {
+      if (res.value) {
+        // tslint:disable-next-line:no-shadowed-variable
+        this.service.delete(idDepartment).subscribe(res => {
+          Swal.fire(
+            'Eliminado',
+            'La persona ha sido eliminado exitosamente',
+            'success'
+          );
+          this.obtenerDepartamentos();
+        });
+      }
+    });
+  }
 }

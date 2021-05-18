@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceService} from '../../Service/service-e.service';
+import Swal from 'sweetalert2';
 
 class Empleado {
   idEmployee: string;
@@ -42,4 +43,25 @@ export class ListarComponent implements OnInit {
     });
   }
 
+  eliminar(idEmployee) {
+    Swal.fire({
+      title: '¿Seguro que desea eliminar la persona?',
+      text: '¡No podra deshacer esta acción!',
+      icon: 'warning',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Si, eliminarlo'
+    }).then((res) => {
+      if (res.value) {
+        // tslint:disable-next-line:no-shadowed-variable
+        this.service.deleteE(idEmployee).subscribe(res => {
+          Swal.fire(
+            'Eliminado',
+            'La persona ha sido eliminado exitosamente',
+            'success'
+          );
+          this.obtenerEmplados();
+        });
+      }
+    });
+  }
 }
