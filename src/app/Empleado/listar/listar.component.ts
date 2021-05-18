@@ -19,13 +19,12 @@ export class ListarComponent implements OnInit {
 
   empleados: any;
   empleado: Empleado;
-  nuevoEmpleado: Empleado;
 
   constructor(private service: ServiceService) { }
 
   ngOnInit(): void {
     this.obtenerEmplados();
-    this.nuevoEmpleado = new Empleado();
+    this.empleado = new Empleado();
   }
 
   obtenerEmplados() {
@@ -35,11 +34,26 @@ export class ListarComponent implements OnInit {
   }
 
   guardar() {
-    console.log(this.nuevoEmpleado.nameEmployee);
-    this.service.createE(this.nuevoEmpleado).subscribe(res => {
+    this.service.createE(this.empleado).subscribe(res => {
       if (res) {
         this.obtenerEmplados();
+        this.empleado = new Empleado();
       }
+    });
+  }
+
+  obtener(id) {
+    console.log(id);
+    this.service.get(id).subscribe(res => {
+      this.empleado = res;
+    });
+  }
+
+  editar(id){
+    this.service.updateE(this.empleado).subscribe(res => {
+      this.empleado = res;
+      this.obtenerEmplados();
+      this.empleado = new Empleado();
     });
   }
 

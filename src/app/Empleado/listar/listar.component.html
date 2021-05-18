@@ -23,7 +23,7 @@
           <td>{{empleado.addressEmployee}}</td>
           <td>{{empleado.phoneNumberEmployee}}</td>
           <td>
-            <button class="btn btn-warning">Editar</button>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#abrirEditar" type="button" (click)="obtener(empleado.idEmployee)">Editar</button>
             <button class="btn btn-danger" style="margin-left: 10px" (click)="eliminar(empleado.idEmployee)">Delete</button>
           </td>
         </tr>
@@ -43,15 +43,15 @@
             <fieldset>
               <div class="form-group">
                 <label for="nombre" class="form-label mt-4">Nombre</label>
-                <input type="nombre" [(ngModel)]="nuevoEmpleado.nameEmployee" name="nameEmployee" class="form-control" id="nombre" aria-describedby="nombre">
+                <input type="text" [(ngModel)]="empleado.nameEmployee" name="nameEmployee" class="form-control" id="nombre" aria-describedby="nombre">
               </div>
               <div class="form-group">
                 <label for="apellido" class="form-label mt-4">Apellidos</label>
-                <input type="apellido" [(ngModel)]="nuevoEmpleado.addressEmployee" name="addressEmployee" class="form-control" id="apellido" aria-describedby="apellido">
+                <input type="text" [(ngModel)]="empleado.addressEmployee" name="addressEmployee" class="form-control" id="apellido" aria-describedby="apellido">
               </div>
               <div class="form-group">
                 <label for="telefono" class="form-label mt-4">Télefono</label>
-                <input type="telefono" [(ngModel)]="nuevoEmpleado.phoneNumberEmployee" name="phoneNumberEmployee" class="form-control" id="telefono" aria-describedby="telefono">
+                <input type="text" [(ngModel)]="empleado.phoneNumberEmployee" name="phoneNumberEmployee" class="form-control" id="telefono" aria-describedby="telefono">
               </div>
               <div>
                 <button type="button" (click)="guardar()" class="btn btn-success" style="text-align: center">Agregar Empleado</button>
@@ -61,5 +61,37 @@
         </div>
       </div>
     </div>
+
+    <!--Modal para editar departamento-->
+    <div class="modal" id = "abrirEditar" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="margin:auto">
+            <h5 class="modal-title">Editar Departamento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <form>
+            <fieldset>
+              <div class="form-group">
+                <label for="nombre" class="form-label mt-4">Nombre</label>
+                <input [(ngModel)]="empleado.nameEmployee" name="nameEmployee" type="text" class="form-control" id="nombreEditado" aria-describedby="nombre">
+              </div>
+              <div class="form-group">
+                <label for="apellido" class="form-label mt-4">Apellidos</label>
+                <input type="text" [(ngModel)]="empleado.addressEmployee" name="addressEmployee" class="form-control" id="apellidoEditado" aria-describedby="apellido">
+              </div>
+              <div class="form-group">
+                <label for="telefono" class="form-label mt-4">Télefono</label>
+                <input type="text" [(ngModel)]="empleado.phoneNumberEmployee" name="phoneNumberEmployee" class="form-control" id="telefonoEditado" aria-describedby="telefono">
+              </div>
+              <div>
+                <button (click)="editar(empleado.idEmployee)" type="button" class="btn btn-success" style="text-align: center">Editar Departamento</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
   </div>
+</div>
 </div>

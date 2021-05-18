@@ -16,7 +16,6 @@ export class ListarDComponent implements OnInit {
 
   departamentos: any;
   departamento: Departamento;
-  nuevoDepartamento: Departamento;
 
   constructor(private service: ServiceService) {
   }
@@ -24,7 +23,6 @@ export class ListarDComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerDepartamentos();
     this.departamento = new Departamento();
-    this.nuevoDepartamento = new Departamento();
   }
 
   obtenerDepartamentos() {
@@ -34,8 +32,7 @@ export class ListarDComponent implements OnInit {
   }
 
   guardar() {
-    console.log(this.nuevoDepartamento.nameDepartment);
-    this.service.create(this.nuevoDepartamento).subscribe(res => {
+    this.service.create(this.departamento).subscribe(res => {
       if (res) {
         this.obtenerDepartamentos();
       }
@@ -44,15 +41,17 @@ export class ListarDComponent implements OnInit {
 
   editar(id) {
     console.log(id);
-    this.service.update(this.nuevoDepartamento).subscribe(res => {
-      this.nuevoDepartamento = res;
+    this.service.update(this.departamento).subscribe(res => {
+      this.departamento = res;
       this.obtenerDepartamentos();
+      this.departamento = new Departamento();
     });
   }
 
   obtener(id) {
+    console.log(id);
     this.service.get(id).subscribe(res => {
-      this.nuevoDepartamento = res;
+      this.departamento = res;
     });
   }
 

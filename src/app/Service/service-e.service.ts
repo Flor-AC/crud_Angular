@@ -62,4 +62,7 @@ export class ServiceService {
     return throwError(errorMessage);
   }
 
+  get(id): Observable<Employee> {
+    return this.http.get<Employee>(this.apiURL + '/employees/' + id, this.httpOptions).pipe(retry(1), catchError(this.handleError));
+  }
 }
